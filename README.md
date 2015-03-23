@@ -27,4 +27,6 @@ MontageJS uses some pure unit tests that are straightforward [Jasmine specs][1].
  [5]: https://github.com/montagejs/digit/tree/master/test        "test/all.js"
  [6]: https://github.com/montagejs/montage/blob/master/test/base/abstract-button-spec.js        "mocking their dependencies"
 
- Last edited: March 12, 2014
+3/15/2015: Benoit
+Modified Jasmine to workaround a bug when testing frozen objects, see https://github.com/jasmine/jasmine/issues/266
+Changes in jasmine.Env.prototype.compareObjects_. Moved property addition used as flags on a and b, the compared objects, to the mismatchKeys that is always available. This will be addressed when we upgrade jasmine.

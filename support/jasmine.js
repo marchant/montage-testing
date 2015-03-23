@@ -900,12 +900,14 @@ jasmine.Env.prototype.compareRegExps_ = function(a, b, mismatchKeys, mismatchVal
 };
 
 jasmine.Env.prototype.compareObjects_ = function(a, b, mismatchKeys, mismatchValues) {
-  if (a.__Jasmine_been_here_before__ === b && b.__Jasmine_been_here_before__ === a) {
+    
+
+  if (mismatchKeys["a__Jasmine_been_here_before__"] === b && mismatchKeys["b__Jasmine_been_here_before__"] === a) {
     return true;
   }
 
-  a.__Jasmine_been_here_before__ = b;
-  b.__Jasmine_been_here_before__ = a;
+  mismatchKeys["a__Jasmine_been_here_before__"] = b;
+  mismatchKeys["b__Jasmine_been_here_before__"] = a;
 
   var hasKey = function(obj, keyName) {
     return obj !== null && obj[keyName] !== jasmine.undefined;
@@ -932,8 +934,8 @@ jasmine.Env.prototype.compareObjects_ = function(a, b, mismatchKeys, mismatchVal
     mismatchValues.push("arrays were not the same length");
   }
 
-  delete a.__Jasmine_been_here_before__;
-  delete b.__Jasmine_been_here_before__;
+  delete mismatchKeys["a__Jasmine_been_here_before__"];
+  delete mismatchKeys["b__Jasmine_been_here_before__"];
   return (mismatchKeys.length === 0 && mismatchValues.length === 0);
 };
 
